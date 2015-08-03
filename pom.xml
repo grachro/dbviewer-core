@@ -5,12 +5,22 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.grachro</groupId>
 	<artifactId>dbviewer-core</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>dbviewer-core</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<github.repo.directory>[foo]/grachro.github.io.git/mvn-repo</github.repo.directory>
 	</properties>
+
+	<distributionManagement>
+  		<repository>
+    		<id>internal.repo</id>
+    		<name>Local Github Pages</name>
+			<url>file://${github.repo.directory}</url>
+		</repository>
+	</distributionManagement>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
