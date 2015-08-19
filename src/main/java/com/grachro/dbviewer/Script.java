@@ -9,7 +9,7 @@ public interface Script {
 
 	public String getScriptCaption();
 
-	public List<String> getUseParams();
+	public List<SqlParameter> getUseParams();
 
 	public void doScript(List<Database> databaseList, List<Command> commandList, Map<String, String> sqlParams);
 }

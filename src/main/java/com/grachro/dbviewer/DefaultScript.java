@@ -27,7 +27,7 @@ public abstract class DefaultScript implements Script {
 	}
 
 	@Override
-	public List<String> getUseParams() {
+	public List<SqlParameter> getUseParams() {
 		return Collections.emptyList();
 	}
 
