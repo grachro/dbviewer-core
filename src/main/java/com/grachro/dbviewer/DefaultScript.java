@@ -1,6 +1,6 @@
 package com.grachro.dbviewer;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -11,9 +11,16 @@ import java.util.Set;
 public abstract class DefaultScript implements Script {
 
 	private String caption;
+	private String description;
+	private List<SqlParameter> parameterList = new ArrayList<SqlParameter>();
 
 	public DefaultScript(String caption) {
 		this.caption = caption;
+	}
+
+	public DefaultScript(String caption, String description) {
+		this.caption = caption;
+		this.description = description;
 	}
 
 	@Override
@@ -28,7 +35,19 @@ public abstract class DefaultScript implements Script {
 
 	@Override
 	public List<SqlParameter> getUseParams() {
-		return Collections.emptyList();
+		return parameterList;
+	}
+
+	public void addParameter(String name) {
+		parameterList.add(new SqlParameter(name));
+	}
+
+	public void addParameter(String name, String caption) {
+		parameterList.add(new SqlParameter(name, caption));
+	}
+
+	public void addParameter(String name, String caption, String description) {
+		parameterList.add(new SqlParameter(name, caption, description));
 	}
 
 	/**
@@ -40,14 +59,23 @@ public abstract class DefaultScript implements Script {
 		return result;
 	}
 
+	@Override
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public Command execute(Database db, List<Command> commandList, String name, String sql) {
 		Command command = new Command(name, sql);
 		commandList.add(command);
 		command.execute(db);
 		return command;
 	}
-	
-	public Command editSqlOnly(Database db, List<Command> commandList, String name, String sql) {
+
+	public Command editSqlOnly(List<Command> commandList, String name, String sql) {
 		Command command = new Command(name, sql);
 		command.editOnly = true;
 		commandList.add(command);

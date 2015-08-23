@@ -3,13 +3,14 @@ package com.grachro.dbviewer;
 import java.util.List;
 import java.util.Map;
 
-
 public interface Script {
-	public String getScriptId();
+	String getScriptId();
 
-	public String getScriptCaption();
+	String getScriptCaption();
 
-	public List<SqlParameter> getUseParams();
+	List<SqlParameter> getUseParams();
 
-	public void doScript(List<Database> databaseList, List<Command> commandList, Map<String, String> sqlParams);
+	void doScript(List<Database> databaseList, List<Command> commandList, Map<String, String> sqlParams);
+
+	String getDescription();
 }
